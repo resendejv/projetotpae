@@ -33,7 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/background2.png"))); // NOI18N
 

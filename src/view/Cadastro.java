@@ -50,7 +50,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Cadastrar");
