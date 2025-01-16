@@ -5,18 +5,8 @@
 package view;
 
 import controller.CadastroController;
-import dao.Conexao;
-import dao.PersonalDAO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import model.Personal;
-import model.Usuario;
 
 /**
  *
