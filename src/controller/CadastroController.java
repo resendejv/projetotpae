@@ -31,12 +31,12 @@ public class CadastroController {
         String email = view.getjTextFieldEmail().getText();
         String senha = view.getjPasswordFieldSenha().getText();
         
-        Personal usuarioDiogo = new Personal(email, senha);
+        Personal usuarioAdd = new Personal(email, senha);
 
         try {
             Connection conexao = new Conexao().getConnection();
             PersonalDAO personaldao = new PersonalDAO(conexao);
-            personaldao.insert(usuarioDiogo);
+            personaldao.insert(usuarioAdd);
             
             JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
             

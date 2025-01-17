@@ -4,17 +4,27 @@
  */
 package view;
 
+import controller.AgendaController;
+import javax.swing.table.DefaultTableModel;
+import model.Utilidades;
+
 /**
  *
  * @author joao victor
  */
 public class Agenda extends javax.swing.JFrame {
+    DefaultTableModel treino;
+    
+    private final AgendaController controller;
  
+    
+    
     /**
      * Creates new form Agenda
      */
     public Agenda() {
         initComponents();
+        controller = new AgendaController(this);
     }
 
     /**
@@ -26,25 +36,148 @@ public class Agenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jData = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jCPF = new javax.swing.JTextField();
+        jNome = new javax.swing.JTextField();
+        jID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jCelular = new javax.swing.JTextField();
+        BotaoSalvarTreino = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTreino = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jBoxTreino = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabeladetreinos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabelFundo1 = new javax.swing.JLabel();
+        jLabelFundo2 = new javax.swing.JLabel();
+        jLabelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/background.jpeg"))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Data:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+        jPanel1.add(jData, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 100, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Matricula:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Nome:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+        jPanel1.add(jCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 140, -1));
+        jPanel1.add(jNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 230, -1));
+        jPanel1.add(jID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 50, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Celular:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jPanel1.add(jCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 140, -1));
+
+        BotaoSalvarTreino.setBackground(new java.awt.Color(51, 102, 0));
+        BotaoSalvarTreino.setText("SALVAR");
+        BotaoSalvarTreino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSalvarTreinoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BotaoSalvarTreino, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Exercicios");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
+
+        jTreino.setColumns(20);
+        jTreino.setRows(5);
+        jScrollPane2.setViewportView(jTreino);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, 160));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Treino:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setText("CPF:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        jBoxTreino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Peito + Triceps", "Costas + Biceps", "Perna", "Ombro", "Superiores Completo", "Inferiores Completo" }));
+        jPanel1.add(jBoxTreino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 110, -1));
+
+        jTabbedPane1.addTab("Dados do Aluno", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabeladetreinos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Matrícula", "Nome", "Treino", "Exercicios", "Data", "CPF ", "Celular"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabeladetreinos);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 630, 290));
+
+        jTabbedPane1.addTab("Treinos Agendados", jPanel2);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 650, 350));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Agendamento");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        jLabelFundo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/output-onlinepngtools.png"))); // NOI18N
+        getContentPane().add(jLabelFundo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+
+        jLabelFundo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/output-onlinepngtools.png"))); // NOI18N
+        getContentPane().add(jLabelFundo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/background.jpeg"))); // NOI18N
+        getContentPane().add(jLabelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotaoSalvarTreinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarTreinoActionPerformed
+
+        treino = (DefaultTableModel)tabeladetreinos.getModel();
+        
+        treino.addRow(new Object[]{
+            jID.getText(),
+            jNome.getText(),
+            jBoxTreino.getSelectedItem(),
+            jTreino.getText(),
+            jData.getText(),
+            jCPF.getText(),
+            jCelular.getText(),
+        });
+        new Utilidades().limpaTela(jPanel1);
+    }//GEN-LAST:event_BotaoSalvarTreinoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,6 +215,30 @@ public class Agenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoSalvarTreino;
+    private javax.swing.JComboBox<String> jBoxTreino;
+    private javax.swing.JTextField jCPF;
+    private javax.swing.JTextField jCelular;
+    private javax.swing.JTextField jData;
+    private javax.swing.JTextField jID;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelBackground;
+    private javax.swing.JLabel jLabelFundo1;
+    private javax.swing.JLabel jLabelFundo2;
+    private javax.swing.JTextField jNome;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTreino;
+    private javax.swing.JTable tabeladetreinos;
     // End of variables declaration//GEN-END:variables
 }
