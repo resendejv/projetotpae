@@ -25,7 +25,7 @@ public class PersonalDAO {
     }
       public Personal insert(Personal personal) throws SQLException{
           
-            String sql = "insert into usuario(email,senha) values (?,'?'); ";
+            String sql = "insert into usuario(email,senha) values (?,?); ";
             
             PreparedStatement statement = connection.prepareStatement(sql); 
             statement.setString(1, personal.getEmail());

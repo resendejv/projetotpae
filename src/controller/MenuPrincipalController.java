@@ -5,6 +5,7 @@
 package controller;
 
 import view.Agenda;
+import view.Login;
 import view.MenuPrincipal;
 
 /**
@@ -24,6 +25,12 @@ public class MenuPrincipalController {
         Agenda agenda = new Agenda();
         agenda.setVisible(true);
         
+    }
+    
+    public void sairDoSistema(){
+            this.view.dispose();
+        Login login = new Login();
+        login.setVisible(true);
     }
     
     

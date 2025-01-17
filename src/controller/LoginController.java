@@ -55,7 +55,8 @@ public class LoginController {
         
     }
     
-    
-    
+    public void sairLogin(){
+        this.view.dispose();
+    }
     
 }

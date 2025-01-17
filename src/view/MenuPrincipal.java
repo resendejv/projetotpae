@@ -31,17 +31,36 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonAgenda = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItemAgendar = new javax.swing.JMenuItem();
+        jMenuConta = new javax.swing.JMenu();
+        jMenuItemPerfil = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonAgenda.setText("Agendar ");
+        jButtonAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 120, 50));
+
+        jButtonSair.setBackground(new java.awt.Color(153, 0, 0));
+        jButtonSair.setText("Encerrar Sessão");
+        getContentPane().add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 120, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/background2.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(172, 30));
 
         jMenuCadastro.setText("Cadastro");
 
@@ -63,30 +82,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCadastro);
 
-        jMenu2.setText("Agendar");
+        jMenuConta.setText("Conta");
 
-        jMenuItemAgendar.setText("Ficha de Treino");
-        jMenuItemAgendar.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemPerfil.setText("Perfil");
+        jMenuConta.add(jMenuItemPerfil);
+
+        jMenuItemSair.setText("Encerrar Sessão");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAgendarActionPerformed(evt);
+                jMenuItemSairActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItemAgendar);
+        jMenuConta.add(jMenuItemSair);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuConta);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,9 +110,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItemAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgendarActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        this.controller.sairDoSistema();
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendaActionPerformed
         this.controller.entrarAgenda();
-    }//GEN-LAST:event_jMenuItemAgendarActionPerformed
+    }//GEN-LAST:event_jButtonAgendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,12 +154,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgenda;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenu jMenuConta;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItemAgendar;
+    private javax.swing.JMenuItem jMenuItemPerfil;
+    private javax.swing.JMenuItem jMenuItemSair;
     // End of variables declaration//GEN-END:variables
 }
