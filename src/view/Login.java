@@ -28,6 +28,7 @@ public class Login extends javax.swing.JFrame {
         
         //inicia um componente controlador, que passa esta view como parametro
         controller = new LoginController(this);
+        //Banco.inicia();
     }
 
     /**

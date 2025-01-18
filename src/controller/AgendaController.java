@@ -18,6 +18,13 @@ public class AgendaController {
         this.view = view;
     }
     
+    public void atualizaTabela(){
+        
+        // Busca lista de agendamentos no DB
+        // Exibe a lista na view
+        
+        
+    }
     
     
 }

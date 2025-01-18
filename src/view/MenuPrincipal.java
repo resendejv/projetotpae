@@ -97,7 +97,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAgendaActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        this.controller.entrarAlunos();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
