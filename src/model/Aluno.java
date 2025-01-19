@@ -24,7 +24,8 @@ public class Aluno extends Usuario{
         this.plano = plano;
         this.mensalidade = mensalidade;
     }
-
+    
+    
     public String getPlano() {
         return plano;
     }

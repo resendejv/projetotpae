@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Aluno;
 
 
@@ -23,7 +25,9 @@ public class AlunoDAO {
     public AlunoDAO(Connection connection) {
         this.connection = connection;
     }
-          public Aluno insert(Aluno aluno) throws SQLException{
+
+
+          public void insert(Aluno aluno) throws SQLException{
           
             String sql = "insert into alunos(id, nome, cpf, email, celular, cidade, uf, plano, mensalidade) values (?,?,?,?,?,?,?,?,?); ";
             
@@ -39,16 +43,38 @@ public class AlunoDAO {
             statement.setInt(9, aluno.getMensalidade());
             
             statement.execute();
-            
-            ResultSet resultSet = statement.getGeneratedKeys();
-            
-            if (resultSet.next()){
-                String email = resultSet.getString("email");
-                aluno.setEmail(email);
-            }
-            return aluno;
         }
     
+        public List<Aluno> getAll() throws SQLException {
+            List<Aluno> alunos = new ArrayList<>();
+            String sql = "SELECT * FROM alunos";
+
+            try (PreparedStatement stmt = connection.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Aluno aluno = new Aluno(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("email"),
+                    rs.getString("celular"),
+                    rs.getString("cidade"),
+                    rs.getString("uf"),
+                    rs.getString("plano"),
+                    rs.getInt("mensalidade")
+            );
+            alunos.add(aluno);
+        }
+    }
+
+    return alunos;
+}
+
+
+    private static class Alunos {
+
+        public Alunos() {
+        }
+    }
     
     
 }

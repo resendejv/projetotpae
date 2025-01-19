@@ -23,7 +23,7 @@ public class PersonalDAO {
     public PersonalDAO(Connection connection) {
         this.connection = connection;
     }
-      public Personal insert(Personal personal) throws SQLException{
+      public void insert(Personal personal) throws SQLException{
           
             String sql = "insert into usuario(email,senha) values (?,?); ";
             
@@ -32,13 +32,6 @@ public class PersonalDAO {
             statement.setString(2, personal.getSenha());
             statement.execute();
             
-            ResultSet resultSet = statement.getGeneratedKeys();
-            
-            if (resultSet.next()){
-                String email = resultSet.getString("email");
-                personal.setEmail(email);
-            }
-            return personal;
         }
       
       public void update(Personal personal) throws SQLException{
