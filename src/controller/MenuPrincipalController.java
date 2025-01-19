@@ -6,6 +6,7 @@ package controller;
 
 import view.Agenda;
 import view.FrmAlunos;
+import view.FuncionariosView;
 import view.Login;
 import view.MenuPrincipal;
 
@@ -39,6 +40,11 @@ public class MenuPrincipalController {
         FrmAlunos alunos = new FrmAlunos();
         alunos.setVisible(true);
         
+    }
+    
+    public void EntrarFuncionarios(){
+        FuncionariosView funcionarios = new FuncionariosView();
+        funcionarios.setVisible(true);
     }
     
 }

@@ -69,6 +69,32 @@ public class AlunoDAO {
     return alunos;
 }
 
+        public void update(Aluno aluno) throws SQLException {
+    String sql = "UPDATE alunos SET nome = ?, cpf = ?, email = ?, celular = ?, cidade = ?, uf = ?, plano = ?, mensalidade = ? WHERE id = ?" ;
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, aluno.getNome());
+        stmt.setString(2, aluno.getCpf());
+        stmt.setString(3, aluno.getEmail());
+        stmt.setString(4, aluno.getCelular());
+        stmt.setString(5, aluno.getCidade());
+        stmt.setString(6, aluno.getUf());
+        stmt.setString(7, aluno.getPlano());
+        stmt.setInt(8, aluno.getMensalidade());
+        stmt.setInt(9, aluno.getId());
+        stmt.executeUpdate();
+    }
+}
+        
+        public void delete(int id) throws SQLException {
+            String sql = "DELETE FROM alunos WHERE id = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+    }
+}
+
+
+        
 
     private static class Alunos {
 

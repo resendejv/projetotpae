@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import model.Aluno;
 import model.Personal;
 
 
@@ -52,13 +54,6 @@ public class PersonalDAO {
           statement.execute();
       }
       
-      public ArrayList<Personal> selectAll() throws SQLException{
-        String sql = "select * from usuario";
-        PreparedStatement statement = connection.prepareStatement(sql);
-          
-          
-        return pesquisa(statement);
-      }
 
     private ArrayList<Personal> pesquisa(PreparedStatement statement) throws SQLException {
         ArrayList<Personal> personals = new ArrayList<Personal>();
@@ -101,5 +96,27 @@ public class PersonalDAO {
         return resultSet.next();
     }
 
-    
+        public List<Personal> getAll() throws SQLException {
+            List<Personal> personals = new ArrayList<>();
+            String sql = "SELECT * FROM usuario";
+
+            try (PreparedStatement stmt = connection.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Personal personal = new Personal(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("email"),
+                    rs.getString("celular"),
+                    rs.getString("cidade"),
+                    rs.getString("uf"),
+                    rs.getInt("salario"),
+                    rs.getString("senha"),
+                    rs.getString("funcao")
+            );
+            personals.add(personal);
+        }
+    }
+    return personals;
+}
 }

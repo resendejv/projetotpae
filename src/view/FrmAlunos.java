@@ -5,22 +5,14 @@
 package view;
 
 import controller.AlunosController;
-import dao.AlunoDAO;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import model.Aluno;
 import model.Utilidades;
 
 /**
  *
- * @author zoomg
+ * @author joao victor
  */
 public class FrmAlunos extends javax.swing.JFrame {
 
@@ -32,6 +24,7 @@ public class FrmAlunos extends javax.swing.JFrame {
     public FrmAlunos() {
         initComponents();
         controller = new AlunosController(this);
+        controller.carregarTabelaAlunos();
     }
 
     /**
@@ -64,6 +57,8 @@ public class FrmAlunos extends javax.swing.JFrame {
         jTextCelular = new javax.swing.JTextField();
         jTextPlano = new javax.swing.JTextField();
         BotaoSalvarAluno = new javax.swing.JButton();
+        BotaoEditarAluno = new javax.swing.JButton();
+        BotaoExcluirAluno = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaAlunos = new javax.swing.JTable();
@@ -132,7 +127,25 @@ public class FrmAlunos extends javax.swing.JFrame {
                 BotaoSalvarAlunoActionPerformed(evt);
             }
         });
-        jPainelDados.add(BotaoSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
+        jPainelDados.add(BotaoSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, -1, -1));
+
+        BotaoEditarAluno.setBackground(new java.awt.Color(0, 0, 102));
+        BotaoEditarAluno.setText("EDITAR");
+        BotaoEditarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoEditarAlunoActionPerformed(evt);
+            }
+        });
+        jPainelDados.add(BotaoEditarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, -1));
+
+        BotaoExcluirAluno.setBackground(new java.awt.Color(153, 0, 0));
+        BotaoExcluirAluno.setText("DELETAR");
+        BotaoExcluirAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoExcluirAlunoActionPerformed(evt);
+            }
+        });
+        jPainelDados.add(BotaoExcluirAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
 
         jTabbedPane1.addTab("Dados Pessoais", jPainelDados);
 
@@ -194,27 +207,6 @@ public class FrmAlunos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- /*   public void listarTabela() throws SQLException {
-        AlunoDAO dao = new AlunoDAO(connection);
-        List<Aluno> lista = dao.selectAll();
-        DefaultTableModel dados = (DefaultTableModel) tabelaAlunos.getModel();
-        dados.setNumRows(0);
-
-        for (Aluno c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getCelular(),
-                c.getCidade(),
-                c.getUf(),
-                c.getPlano(),
-                c.getMensalidade()
-            });
-        }
-    }
-    */
     
     private void tabelaAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAlunosMouseClicked
         // Pega os dados
@@ -231,10 +223,25 @@ public class FrmAlunos extends javax.swing.JFrame {
         jTextMensalidade.setText(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedRow(), 8).toString());
     }//GEN-LAST:event_tabelaAlunosMouseClicked
 
+    
     private void BotaoSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarAlunoActionPerformed
         controller.salvarAluno();
-        new Utilidades().limpaTela(jPanel2);
+        new Utilidades().limpaTela(jPainelDados);
+        controller.carregarTabelaAlunos();
+        
     }//GEN-LAST:event_BotaoSalvarAlunoActionPerformed
+
+    private void BotaoEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditarAlunoActionPerformed
+        controller.editarAluno();
+        new Utilidades().limpaTela(jPainelDados);
+        controller.carregarTabelaAlunos();
+    }//GEN-LAST:event_BotaoEditarAlunoActionPerformed
+
+    private void BotaoExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirAlunoActionPerformed
+        controller.deletarAluno();
+        new Utilidades().limpaTela(jPainelDados);
+        controller.carregarTabelaAlunos();
+    }//GEN-LAST:event_BotaoExcluirAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +279,8 @@ public class FrmAlunos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoEditarAluno;
+    private javax.swing.JButton BotaoExcluirAluno;
     private javax.swing.JButton BotaoSalvarAluno;
     private javax.swing.JComboBox<String> cbuf;
     private javax.swing.JTextField jID;
