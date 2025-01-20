@@ -10,15 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Aluno;
 import model.Personal;
+import model.Utilidades3;
 
 
 /**
  *
  * @author joao victor
  */
-public class PersonalDAO {
+public class PersonalDAO implements Utilidades3 {
     
     private final Connection connection;
 
@@ -35,51 +35,7 @@ public class PersonalDAO {
             statement.execute();
             
         }
-      
-      public void update(Personal personal) throws SQLException{
-          String sql = "update into usuario set email = ? and senha ? where email = ?";
-            
-          PreparedStatement statement = connection.prepareStatement(sql); 
-          statement.setString(1, personal.getEmail());
-          statement.setString(2, personal.getSenha());
-          statement.execute();
-      }
-      
-      
-      public void delete(Personal personal) throws SQLException{
-          String sql = "delete from usuario where email = ?";
-          PreparedStatement statement = connection.prepareStatement(sql);
-          
-          statement.setString(1, personal.getEmail());
-          statement.execute();
-      }
-      
 
-    private ArrayList<Personal> pesquisa(PreparedStatement statement) throws SQLException {
-        ArrayList<Personal> personals = new ArrayList<Personal>();
-          
-        statement.execute();
-        ResultSet resultSet = statement.getResultSet();
-        
-        while(resultSet.next()){
-            String email = resultSet.getString("email");
-            String senha = resultSet.getString("senha");
-            
-            Personal personalComDadosDoBanco = new Personal(email, senha);
-            personals.add(personalComDadosDoBanco);
-        }
-        
-        return personals;
-    }
-
-      public Personal selectPorEmail(Personal personal) throws SQLException{
-        String sql = "select * from usuario where email = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, personal.getEmail());
-        
-        return pesquisa(statement).get(0);
-        
-      }
       
     public boolean existeNoBancoPorEmailESenha(Personal personal) throws SQLException {
         
@@ -96,7 +52,7 @@ public class PersonalDAO {
         return resultSet.next();
     }
 
-        public List<Personal> getAll() throws SQLException {
+    public List<Personal> getAll() throws SQLException {
             List<Personal> personals = new ArrayList<>();
             String sql = "SELECT * FROM usuario";
 
@@ -111,7 +67,7 @@ public class PersonalDAO {
                     rs.getString("cidade"),
                     rs.getString("uf"),
                     rs.getInt("salario"),
-                    rs.getString("senha"),
+                    rs.getString("funcao"),
                     rs.getString("funcao")
             );
             personals.add(personal);

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Personal;
+import model.Utilidades2;
 import view.Cadastro;
 import view.FuncionariosView;
 
@@ -20,16 +21,16 @@ import view.FuncionariosView;
  *
  * @author joao victor
  */
-public class FuncionariosController {
+public class FuncionariosController implements Utilidades2 {
     
     public FuncionariosView view;
 
     public FuncionariosController(FuncionariosView view) {
         this.view = view;
     }
-    
-        public void carregarTabelaPersonal() {
-    try {
+        @Override
+        public void carregarTabela() {
+            try {
         Connection conexao = new Conexao().getConnection();
         PersonalDAO personaldao = new PersonalDAO(conexao);
         List<Personal> personals = personaldao.getAll();
@@ -44,10 +45,10 @@ public class FuncionariosController {
                 verificarNulo(personal.getCpf()),
                 verificarNulo(personal.getEmail()),
                 verificarNulo(personal.getCelular()),
+                verificarNulo(personal.getFuncao()),
+                verificarZero(personal.getSalario()), // Verifica se o Salario é 0
                 verificarNulo(personal.getCidade()),
                 verificarNulo(personal.getUf()),
-                verificarNulo(personal.getSenha()),
-                verificarZero(personal.getId()), // Verifica se ID é 0
             });
         }
 
@@ -66,4 +67,9 @@ private String verificarZero(int valor) {
     return valor == 0 ? "-" : String.valueOf(valor);
    
 }
+
+    @Override
+    public void salvarTabela() {
+        //Método não utilizado na Janela de Funcionarios
+    }
 }

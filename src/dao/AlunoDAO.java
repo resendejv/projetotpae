@@ -10,22 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.Aluno;
-
+import model.Utilidades3;
 
 /**
  *
  * @author joao victor
  */
-public class AlunoDAO {
+public class AlunoDAO implements Utilidades3{
     
     private final Connection connection;
 
     public AlunoDAO(Connection connection) {
         this.connection = connection;
     }
-
 
           public void insert(Aluno aluno) throws SQLException{
           
@@ -92,15 +90,5 @@ public class AlunoDAO {
                 stmt.executeUpdate();
     }
 }
-
-
-        
-
-    private static class Alunos {
-
-        public Alunos() {
-        }
-    }
-    
-    
+ 
 }

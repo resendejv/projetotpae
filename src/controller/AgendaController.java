@@ -4,27 +4,42 @@
  */
 package controller;
 
+import java.awt.Component;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import model.Utilidades;
 import view.Agenda;
 
 /**
  *
  * @author joao victor
  */
-public class AgendaController {
+public class AgendaController implements Utilidades {
     
-    private final Agenda view;
 
     public AgendaController(Agenda view) {
-        this.view = view;
     }
-    
-    public void atualizaTabela(){
-        
-        // Busca lista de agendamentos no DB
-        // Exibe a lista na view
-        
-        
+
+    @Override
+    public void limpaTela(JPanel container) {
+    Component components[] = container.getComponents();
+    for (Component component : components) {
+        if (component instanceof JTextField) {
+            ((JTextField) component).setText(null);
+        } else if (component instanceof JScrollPane) {
+            Component view = ((JScrollPane) component).getViewport().getView();
+            if (view instanceof JTextArea) {
+                ((JTextArea) view).setText(null);
+            } else if (view instanceof JTable) {
+                ((DefaultTableModel) ((JTable) view).getModel()).setRowCount(0);
+            }
+        }
     }
-    
-    
 }
+
+    }
+    

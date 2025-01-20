@@ -6,10 +6,14 @@ package controller;
 
 import dao.Conexao;
 import dao.PersonalDAO;
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import model.Personal;
+import model.Utilidades;
 import view.Login;
 import view.MenuPrincipal;
 
@@ -17,7 +21,7 @@ import view.MenuPrincipal;
  *
  * @author joao victor
  */
-public class LoginController {
+public class LoginController implements Utilidades {
     
     private Login view;
 
@@ -58,5 +62,16 @@ public class LoginController {
     public void sairLogin(){
         this.view.dispose();
     }
-    
+
+    @Override
+    public void limpaTela(JPanel container) {
+        Component components[] = container.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                ((JTextField) component).setText(null);
+            }
+        }
+    }
 }
+
+    

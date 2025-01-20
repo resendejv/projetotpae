@@ -52,6 +52,7 @@ public class Cadastro extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         jPasswordFieldSenha.setBackground(new java.awt.Color(51, 51, 51));
+        jPasswordFieldSenha.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPasswordFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 240, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N

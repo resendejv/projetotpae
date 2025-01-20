@@ -6,7 +6,6 @@ package view;
 
 import controller.AgendaController;
 import javax.swing.table.DefaultTableModel;
-import model.Utilidades;
 
 /**
  *
@@ -40,11 +39,8 @@ public class Agenda extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jData = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jCPF = new javax.swing.JTextField();
         jNome = new javax.swing.JTextField();
-        jID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jCelular = new javax.swing.JTextField();
         BotaoSalvarTreino = new javax.swing.JButton();
@@ -52,7 +48,6 @@ public class Agenda extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTreino = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jBoxTreino = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -69,24 +64,18 @@ public class Agenda extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Data:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
-        jPanel1.add(jData, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 100, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Matricula:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(jData, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Nome:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-        jPanel1.add(jCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 140, -1));
-        jPanel1.add(jNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 230, -1));
-        jPanel1.add(jID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 50, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel1.add(jNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 230, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Celular:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-        jPanel1.add(jCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 140, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanel1.add(jCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 140, -1));
 
         BotaoSalvarTreino.setBackground(new java.awt.Color(51, 102, 0));
         BotaoSalvarTreino.setText("SALVAR");
@@ -109,14 +98,10 @@ public class Agenda extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Treino:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setText("CPF:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jBoxTreino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Peito + Triceps", "Costas + Biceps", "Perna", "Ombro", "Superiores Completo", "Inferiores Completo" }));
-        jPanel1.add(jBoxTreino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 110, -1));
+        jPanel1.add(jBoxTreino, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 110, -1));
 
         jTabbedPane1.addTab("Dados do Aluno", jPanel1);
 
@@ -127,11 +112,11 @@ public class Agenda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Matrícula", "Nome", "Treino", "Exercicios", "Data", "CPF ", "Celular"
+                "Nome", "Treino", "Exercicios", "Data", "Celular"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -168,15 +153,13 @@ public class Agenda extends javax.swing.JFrame {
         treino = (DefaultTableModel)tabeladetreinos.getModel();
         
         treino.addRow(new Object[]{
-            jID.getText(),
             jNome.getText(),
             jBoxTreino.getSelectedItem(),
             jTreino.getText(),
             jData.getText(),
-            jCPF.getText(),
             jCelular.getText(),
         });
-        new Utilidades().limpaTela(jPanel1);
+        controller.limpaTela(jPanel1);
     }//GEN-LAST:event_BotaoSalvarTreinoActionPerformed
 
     /**
@@ -217,16 +200,12 @@ public class Agenda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoSalvarTreino;
     private javax.swing.JComboBox<String> jBoxTreino;
-    private javax.swing.JTextField jCPF;
     private javax.swing.JTextField jCelular;
     private javax.swing.JTextField jData;
-    private javax.swing.JTextField jID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelBackground;

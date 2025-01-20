@@ -8,7 +8,6 @@ import controller.AlunosController;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import model.Utilidades;
 
 /**
  *
@@ -24,7 +23,7 @@ public class FrmAlunos extends javax.swing.JFrame {
     public FrmAlunos() {
         initComponents();
         controller = new AlunosController(this);
-        controller.carregarTabelaAlunos();
+        controller.carregarTabela();
     }
 
     /**
@@ -225,22 +224,22 @@ public class FrmAlunos extends javax.swing.JFrame {
 
     
     private void BotaoSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarAlunoActionPerformed
-        controller.salvarAluno();
-        new Utilidades().limpaTela(jPainelDados);
-        controller.carregarTabelaAlunos();
+        controller.salvarTabela();
+        controller.limpaTela(jPainelDados);
+        controller.carregarTabela();
         
     }//GEN-LAST:event_BotaoSalvarAlunoActionPerformed
 
     private void BotaoEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditarAlunoActionPerformed
         controller.editarAluno();
-        new Utilidades().limpaTela(jPainelDados);
-        controller.carregarTabelaAlunos();
+        controller.limpaTela(jPainelDados);
+        controller.carregarTabela();
     }//GEN-LAST:event_BotaoEditarAlunoActionPerformed
 
     private void BotaoExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirAlunoActionPerformed
         controller.deletarAluno();
-        new Utilidades().limpaTela(jPainelDados);
-        controller.carregarTabelaAlunos();
+        controller.limpaTela(jPainelDados);
+        controller.carregarTabela();
     }//GEN-LAST:event_BotaoExcluirAlunoActionPerformed
 
     /**
@@ -312,13 +311,6 @@ public class FrmAlunos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    
-    private static class Alunos {
-
-        public Alunos() {
-        }
-    }
-
     public JComboBox<String> getCbuf() {
         return cbuf;
     }

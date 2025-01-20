@@ -6,14 +6,19 @@ package controller;
 
 import dao.AlunoDAO;
 import dao.Conexao;
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;
+import model.Utilidades;
+import model.Utilidades2;
 import view.Cadastro;
 import view.FrmAlunos;
 
@@ -21,7 +26,7 @@ import view.FrmAlunos;
  *
  * @author joao victor
  */
-public class AlunosController {
+public class AlunosController implements Utilidades, Utilidades2 {
     
     public FrmAlunos view;
 
@@ -29,54 +34,10 @@ public class AlunosController {
         this.view = view;
         
     }
-    
-    
-    public void salvarAluno(){
-        
-        // Verifica se os campos obrigatórios estão preenchidos
-        if (view.getjID().getText().isEmpty() || 
-            view.getjTextNome().getText().isEmpty() || 
-            view.getjTextCPF().getText().isEmpty() || 
-            view.getjTextEmail().getText().isEmpty() || 
-            view.getjTextCelular().getText().isEmpty() || 
-            view.getjTextCidade().getText().isEmpty() || 
-            view.getCbuf().getSelectedItem() == null || 
-            view.getjTextPlano().getText().isEmpty() || 
-            view.getjTextMensalidade().getText().isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro ao cadastrar aluno", JOptionPane.ERROR_MESSAGE);
-            return; // Sai do método se algum campo estiver vazio
-        }
-        
-        int id = Integer.parseInt(view.getjID().getText());
-        String nome = view.getjTextNome().getText();
-        String cpf = view.getjTextCPF().getText();
-        String email = view.getjTextEmail().getText();
-        String celular = view.getjTextCelular().getText();
-        String cidade = view.getjTextCidade().getText();
-        String uf = (String) view.getCbuf().getSelectedItem();
-        String plano = view.getjTextPlano().getText();
-        int mensalidade = Integer.parseInt(view.getjTextMensalidade().getText());
-        
-        
-        Aluno alunoAdd = new Aluno(id, nome, cpf, email, celular, cidade, uf, plano, mensalidade);
-
-        try {
-            Connection conexao = new Conexao().getConnection();
-            AlunoDAO alunodao = new AlunoDAO(conexao);
-            alunodao.insert(alunoAdd);
-            
-            JOptionPane.showMessageDialog(null, "Aluno salvo com sucesso!");
-            
-            // dentro do TRY ele fecha a conexao sozinho
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }  
-    }
     
-    public void carregarTabelaAlunos() {
+    @Override
+    public void carregarTabela(){
     try {
         Connection conexao = new Conexao().getConnection();
         AlunoDAO alunodao = new AlunoDAO(conexao);
@@ -140,7 +101,7 @@ public class AlunosController {
         alunodao.update(alunoEditado);
 
         JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso!");
-        carregarTabelaAlunos(); // Atualiza a tabela após a edição
+        carregarTabela(); // Atualiza a tabela após a edição
 
     } catch (SQLException ex) {
         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,7 +124,7 @@ public class AlunosController {
         alunodao.delete(id);
 
         JOptionPane.showMessageDialog(null, "Aluno deletado com sucesso!");
-        carregarTabelaAlunos(); // Atualiza a tabela após a exclusão
+        carregarTabela(); // Atualiza a tabela após a exclusão
 
     } catch (SQLException ex) {
         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -171,7 +132,59 @@ public class AlunosController {
     }
 }
 
-    
-    
-    
-}
+    @Override
+    public void limpaTela(JPanel container) {
+        Component components[] = container.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                ((JTextField) component).setText(null);
+            }
+        }
+    }
+
+
+    @Override
+    public void salvarTabela() {
+        // Verifica se os campos obrigatórios estão preenchidos
+        if (view.getjID().getText().isEmpty() || 
+            view.getjTextNome().getText().isEmpty() || 
+            view.getjTextCPF().getText().isEmpty() || 
+            view.getjTextEmail().getText().isEmpty() || 
+            view.getjTextCelular().getText().isEmpty() || 
+            view.getjTextCidade().getText().isEmpty() || 
+            view.getCbuf().getSelectedItem() == null || 
+            view.getjTextPlano().getText().isEmpty() || 
+            view.getjTextMensalidade().getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro ao cadastrar aluno", JOptionPane.ERROR_MESSAGE);
+            return; // Sai do método se algum campo estiver vazio
+        }
+        
+        int id = Integer.parseInt(view.getjID().getText());
+        String nome = view.getjTextNome().getText();
+        String cpf = view.getjTextCPF().getText();
+        String email = view.getjTextEmail().getText();
+        String celular = view.getjTextCelular().getText();
+        String cidade = view.getjTextCidade().getText();
+        String uf = (String) view.getCbuf().getSelectedItem();
+        String plano = view.getjTextPlano().getText();
+        int mensalidade = Integer.parseInt(view.getjTextMensalidade().getText());
+        
+        
+        Aluno alunoAdd = new Aluno(id, nome, cpf, email, celular, cidade, uf, plano, mensalidade);
+
+        try {
+            Connection conexao = new Conexao().getConnection();
+            AlunoDAO alunodao = new AlunoDAO(conexao);
+            alunodao.insert(alunoAdd);
+            
+            JOptionPane.showMessageDialog(null, "Aluno salvo com sucesso!");
+            
+            // dentro do TRY ele fecha a conexao sozinho
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }  
+    }
+    }

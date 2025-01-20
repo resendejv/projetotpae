@@ -81,7 +81,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Personal Trainers");
+        jMenu2.setText("Funcionarios");
 
         jMenuItem1.setText("Controle de Funcionários");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
