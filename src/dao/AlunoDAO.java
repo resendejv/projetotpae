@@ -14,7 +14,9 @@ import model.Aluno;
 import model.Utilidades3;
 
 /**
- *
+ * Classe responsável por gerenciar métodos que operam alunos no banco de dados.
+ * Esta classe fornece métodos para cadastrar, listar, editar e remover alunos.
+ * 
  * @author joao victor
  */
 public class AlunoDAO implements Utilidades3{
@@ -25,6 +27,14 @@ public class AlunoDAO implements Utilidades3{
         this.connection = connection;
     }
 
+    /**
+     * Método para adicionar um novo aluno na tabela de alunos
+     * 
+     * @param aluno Objeto da classe Aluno, contendo todas informações do aluno
+     * a ser cadastrado.
+     * 
+     * @throws SQLException 
+     */
           public void insert(Aluno aluno) throws SQLException{
           
             String sql = "insert into alunos(id, nome, cpf, email, celular, cidade, uf, plano, mensalidade) values (?,?,?,?,?,?,?,?,?); ";
@@ -43,6 +53,13 @@ public class AlunoDAO implements Utilidades3{
             statement.execute();
         }
     
+          /**
+           * Método implementado para listar todos alunos que estão na tabela, usando a conexão
+           * com o Banco de Dados.
+           * 
+           * @return lista de objetos Alunos, contendo todas informações dos alunos cadastrados.
+           * @throws SQLException 
+           */
         public List<Aluno> getAll() throws SQLException {
             List<Aluno> alunos = new ArrayList<>();
             String sql = "SELECT * FROM alunos";
@@ -67,6 +84,13 @@ public class AlunoDAO implements Utilidades3{
     return alunos;
 }
 
+        /**
+         * Método responsável por editar informações de um aluno no Banco de Dados.
+         * 
+         * @param aluno Objeto da classe Aluno com as informações do aluno a serem editadas.
+         * 
+         * @throws SQLException 
+         */
         public void update(Aluno aluno) throws SQLException {
     String sql = "UPDATE alunos SET nome = ?, cpf = ?, email = ?, celular = ?, cidade = ?, uf = ?, plano = ?, mensalidade = ? WHERE id = ?" ;
     try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -83,6 +107,14 @@ public class AlunoDAO implements Utilidades3{
     }
 }
         
+        /**
+         * Método que exclui um aluno da tabela.
+         * 
+         * @param id Matrícula do Aluno a ser excluido, o que garante que ele
+         * esteja realmente cadastrado.
+         * 
+         * @throws SQLException 
+         */
         public void delete(int id) throws SQLException {
             String sql = "DELETE FROM alunos WHERE id = ?";
                 try (PreparedStatement stmt = connection.prepareStatement(sql)) {

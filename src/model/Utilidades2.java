@@ -5,11 +5,21 @@
 package model;
 
 /**
- *
+ * Interface que instancia métodos de carregar uma tabela e atualizar seus dados.
+ * 
  * @author joao victor
  */
 public interface Utilidades2 {
     
+    /**
+     * Carrega dados de uma tabela.
+     * 
+     */
     public abstract void carregarTabela();
+    
+    /**
+     * Atualiza os dados de uma tabela.
+     * 
+     */
     public abstract void salvarTabela();
 }

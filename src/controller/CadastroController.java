@@ -15,7 +15,8 @@ import model.Personal;
 import view.Cadastro;
 
 /**
- *
+ * Classe responsável por gerenciar a janela de cadastro.
+ * 
  * @author joao victor
  */
 public class CadastroController {
@@ -26,6 +27,10 @@ public class CadastroController {
         this.view = view;
     }
     
+    /**
+     * Método utilizado para adicionar um personal cadastrado no banco de dados.
+     * 
+     */
     public void salvaPersonal(){
         
         String email = view.getjTextFieldEmail().getText();
@@ -40,7 +45,7 @@ public class CadastroController {
             
             JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
             
-            // dentro do TRY ele fecha a conexao sozinho
+            /** dentro do TRY ele fecha a conexao sozinho */
         
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);

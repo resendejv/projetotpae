@@ -18,7 +18,8 @@ import view.Login;
 import view.MenuPrincipal;
 
 /**
- *
+ * Classe responsável por gerenciar a janela de Login.
+ * 
  * @author joao victor
  */
 public class LoginController implements Utilidades {
@@ -29,6 +30,12 @@ public class LoginController implements Utilidades {
         this.view = view;
     }
 
+    /**
+     * Método que verifica as credenciais dadas, para permitir um usuário entrar
+     * no sistema.
+     * 
+     * @throws SQLException 
+     */
     public void autenticar() throws SQLException {
         
         // busca um usuario da view
@@ -59,10 +66,19 @@ public class LoginController implements Utilidades {
         
     }
     
+    /**
+     * Método para fechar a janela de Login e sair do sistema.
+     * 
+     */
     public void sairLogin(){
         this.view.dispose();
     }
 
+    /**
+     * Método implementado para limpar os campos de texto após tentativa de Login.
+     * 
+     * @param container Janela de Login.
+     */
     @Override
     public void limpaTela(JPanel container) {
         Component components[] = container.getComponents();

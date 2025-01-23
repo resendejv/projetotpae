@@ -5,30 +5,33 @@
 package model;
 
 /**
- *
+ * Representa um usuário no sistema de academia.
+ * 
+ * A classe {@code Usuario} encapsula informações relacionadas a um usuário.
+ * 
  * @author joao victor
  */
 abstract public class Usuario {
     
-    // Identificador do usuario
+    /** Identificador do usuario */
     protected int id;
     
-    // Nome do usuario
+    /** Nome do usuario */
     protected String nome;
     
-    // CPF do usuario
+    /** CPF do usuario */
     protected String cpf;
     
-    // Email do usuario
+    /** Email do usuario */
     protected String email;
     
-    // Celular do usuario
+    /** Celular do usuario */
     protected String celular;
     
-    // Cidade do usuario
+    /** Cidade do usuario */
     protected String cidade;
     
-    // Unidade Federativa (UF) do usuario
+    /** Unidade Federativa (UF) do usuario */
     protected String uf;
 
     public Usuario(int id, String nome, String cpf, String email, String celular, String cidade, String uf) {

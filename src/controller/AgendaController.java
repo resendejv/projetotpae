@@ -15,6 +15,7 @@ import model.Utilidades;
 import view.Agenda;
 
 /**
+ * Classe responsável por gerenciar a janela de agenda.
  *
  * @author joao victor
  */
@@ -24,6 +25,12 @@ public class AgendaController implements Utilidades {
     public AgendaController(Agenda view) {
     }
 
+    /**
+     * Método implementado que limpa a os campos de texto quando as informações
+     * são salvas.
+     * 
+     * @param container Janela da agenda
+     */
     @Override
     public void limpaTela(JPanel container) {
     Component components[] = container.getComponents();

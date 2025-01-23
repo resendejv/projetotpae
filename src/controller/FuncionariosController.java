@@ -18,7 +18,8 @@ import view.Cadastro;
 import view.FuncionariosView;
 
 /**
- *
+ * Classe responsável por gerenciar a janela de funcionários.
+ * 
  * @author joao victor
  */
 public class FuncionariosController implements Utilidades2 {
@@ -28,6 +29,12 @@ public class FuncionariosController implements Utilidades2 {
     public FuncionariosController(FuncionariosView view) {
         this.view = view;
     }
+    
+    /**
+     * Método implementado que permite carregar a tabela de funcionários existentes
+     * no banco de dados.
+     * 
+     */
         @Override
         public void carregarTabela() {
             try {
@@ -36,7 +43,7 @@ public class FuncionariosController implements Utilidades2 {
         List<Personal> personals = personaldao.getAll();
 
         DefaultTableModel modelo = (DefaultTableModel) view.getTabelaPersonal().getModel();
-        modelo.setRowCount(0); // Limpa a tabela
+        modelo.setRowCount(0); /** Limpa a tabela */
 
         for (Personal personal : personals) {
             modelo.addRow(new Object[]{
@@ -57,14 +64,14 @@ public class FuncionariosController implements Utilidades2 {
     }
 }
 
-// Método auxiliar para verificar campos de texto nulos ou vazios
-private String verificarNulo(String valor) {
-    return (valor == null || valor.trim().isEmpty()) ? "-" : valor;
+    // Método auxiliar para verificar campos de texto nulos ou vazios
+    private String verificarNulo(String valor) {
+        return (valor == null || valor.trim().isEmpty()) ? "-" : valor;
 }
 
-// Método auxiliar para verificar se um valor inteiro é 0
-private String verificarZero(int valor) {
-    return valor == 0 ? "-" : String.valueOf(valor);
+    // Método auxiliar para verificar se um valor inteiro é 0
+    private String verificarZero(int valor) {
+        return valor == 0 ? "-" : String.valueOf(valor);
    
 }
 

@@ -23,7 +23,8 @@ import view.Cadastro;
 import view.FrmAlunos;
 
 /**
- *
+ * Classe responsável por gerenciar a janela de alunos.
+ * 
  * @author joao victor
  */
 public class AlunosController implements Utilidades, Utilidades2 {
@@ -35,7 +36,10 @@ public class AlunosController implements Utilidades, Utilidades2 {
         
     }
 
-    
+    /**
+     * Método implementado que carrega a tabela na janela de alunos.
+     * 
+     */
     @Override
     public void carregarTabela(){
     try {
@@ -44,7 +48,7 @@ public class AlunosController implements Utilidades, Utilidades2 {
         List<Aluno> alunos = alunodao.getAll();
 
         DefaultTableModel modelo = (DefaultTableModel) view.getTabelaAlunos().getModel();
-        modelo.setRowCount(0); // Limpa a tabela
+        modelo.setRowCount(0); /** Limpa a tabela */
 
         for (Aluno aluno : alunos) {
             modelo.addRow(new Object[]{
@@ -65,9 +69,14 @@ public class AlunosController implements Utilidades, Utilidades2 {
     }
 }
     
+    /**
+     * Método que permite editar as informações de um aluno existente e enviá-las 
+     * para o banco de dados.
+     * 
+     */ 
     public void editarAluno() {
 
-        // Verifica se os campos obrigatórios estão preenchidos
+        /** Verifica se os campos obrigatórios estão preenchidos */
         if (view.getjID().getText().isEmpty() || 
             view.getjTextNome().getText().isEmpty() || 
             view.getjTextCPF().getText().isEmpty() || 
@@ -79,10 +88,10 @@ public class AlunosController implements Utilidades, Utilidades2 {
             view.getjTextMensalidade().getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro ao cadastrar aluno", JOptionPane.ERROR_MESSAGE);
-            return; // Sai do método se algum campo estiver vazio
+            return; /** Sai do método se algum campo estiver vazio */
         }
         
-    // Atualizando com os dados da interface
+    /** Atualizando com os dados da interface */
     int id = Integer.parseInt(view.getjID().getText());
     String nome = view.getjTextNome().getText();
     String cpf = view.getjTextCPF().getText();
@@ -101,7 +110,7 @@ public class AlunosController implements Utilidades, Utilidades2 {
         alunodao.update(alunoEditado);
 
         JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso!");
-        carregarTabela(); // Atualiza a tabela após a edição
+        carregarTabela(); /** Atualiza a tabela após a edição */
 
     } catch (SQLException ex) {
         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,6 +118,9 @@ public class AlunosController implements Utilidades, Utilidades2 {
     }
 }
     
+    /**
+     * Método que permite remover um aluno da tabela.
+     */
     public void deletarAluno() {
     int selectedRow = view.getTabelaAlunos().getSelectedRow();
     if (selectedRow == -1) {
@@ -124,7 +136,7 @@ public class AlunosController implements Utilidades, Utilidades2 {
         alunodao.delete(id);
 
         JOptionPane.showMessageDialog(null, "Aluno deletado com sucesso!");
-        carregarTabela(); // Atualiza a tabela após a exclusão
+        carregarTabela(); /** Atualiza a tabela após a exclusão */
 
     } catch (SQLException ex) {
         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,6 +144,12 @@ public class AlunosController implements Utilidades, Utilidades2 {
     }
 }
 
+    /** 
+     * Método implementado que limpa os campos de texto quando um aluno
+     * é adicionado, editado ou removido.
+     * 
+     * @param container 
+     */
     @Override
     public void limpaTela(JPanel container) {
         Component components[] = container.getComponents();
@@ -143,9 +161,14 @@ public class AlunosController implements Utilidades, Utilidades2 {
     }
 
 
+    /**
+     * Méodo implementado para atualizar a tabela de alunos após algum outro método
+     * ser utilizado.
+     * 
+     */
     @Override
     public void salvarTabela() {
-        // Verifica se os campos obrigatórios estão preenchidos
+        /** Verifica se os campos obrigatórios estão preenchidos */
         if (view.getjID().getText().isEmpty() || 
             view.getjTextNome().getText().isEmpty() || 
             view.getjTextCPF().getText().isEmpty() || 
@@ -157,7 +180,7 @@ public class AlunosController implements Utilidades, Utilidades2 {
             view.getjTextMensalidade().getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro ao cadastrar aluno", JOptionPane.ERROR_MESSAGE);
-            return; // Sai do método se algum campo estiver vazio
+            return; /** Sai do método se algum campo estiver vazio */
         }
         
         int id = Integer.parseInt(view.getjID().getText());
@@ -180,7 +203,7 @@ public class AlunosController implements Utilidades, Utilidades2 {
             
             JOptionPane.showMessageDialog(null, "Aluno salvo com sucesso!");
             
-            // dentro do TRY ele fecha a conexao sozinho
+            /** dentro do TRY ele fecha a conexao sozinho */
         
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);

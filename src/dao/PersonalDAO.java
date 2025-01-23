@@ -15,7 +15,10 @@ import model.Utilidades3;
 
 
 /**
- *
+ * Classe responsável por gerenciar métodos que operam personals no banco de dados.
+ * Esta classe fornece métodos para cadastrar, listar, e buscar cadastro de personals
+ * no banco de dados.
+ * 
  * @author joao victor
  */
 public class PersonalDAO implements Utilidades3 {
@@ -25,6 +28,15 @@ public class PersonalDAO implements Utilidades3 {
     public PersonalDAO(Connection connection) {
         this.connection = connection;
     }
+    
+    /**
+     * Método para inserir um personal no banco de dados, para que ele consiga fazer login.
+     * 
+     * @param personal Objeto da classe Personal, utilizando o construtor que apenas
+     * necessita do email e senha, para cadastrá-lo.
+     * 
+     * @throws SQLException 
+     */
       public void insert(Personal personal) throws SQLException{
           
             String sql = "insert into usuario(email,senha) values (?,?); ";
@@ -36,7 +48,16 @@ public class PersonalDAO implements Utilidades3 {
             
         }
 
-      
+      /**
+       * Método que busca um personal no banco de dados, para que ele consiga fazer
+       * login se as informações existirem.
+       * 
+       * @param personal Objeto da classe Personal, com email e senha.
+       * @return Retorna um boolean do banco de dados, que busca as informações dadas
+       * nas tabelas, e retorna True se a combinação de login e senha existirem.
+       * 
+       * @throws SQLException 
+       */
     public boolean existeNoBancoPorEmailESenha(Personal personal) throws SQLException {
         
         String sql = "select * from usuario where email = ? and senha = ?";
@@ -52,6 +73,13 @@ public class PersonalDAO implements Utilidades3 {
         return resultSet.next();
     }
 
+    /**
+    * Método implementado para listar todos personals que estão na tabela, usando a conexão
+    * com o Banco de Dados.
+    * 
+     * @return Lista de objetos Personal, com dados dos personals cadastrados.
+     * @throws SQLException 
+     */
     public List<Personal> getAll() throws SQLException {
             List<Personal> personals = new ArrayList<>();
             String sql = "SELECT * FROM usuario";

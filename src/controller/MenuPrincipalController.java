@@ -11,7 +11,8 @@ import view.Login;
 import view.MenuPrincipal;
 
 /**
- *
+ * Método que gerencia a janela de Menu.
+ * 
  * @author joao victor
  */
 public class MenuPrincipalController {
@@ -22,6 +23,10 @@ public class MenuPrincipalController {
         this.view = view;
     }
     
+    /**
+     * Método para abrir a janela de agenda.
+     * 
+     */
     public void entrarAgenda(){
         
         Agenda agenda = new Agenda();
@@ -29,12 +34,20 @@ public class MenuPrincipalController {
         
     }
     
+    /**
+     * Método para encerrar a sessão atual e abrir a tela de Login novamente.
+     * 
+     */
     public void sairDoSistema(){
             this.view.dispose();
         Login login = new Login();
         login.setVisible(true);
     }
     
+    /**
+     * Método para abrir a janela de alunos.
+     * 
+     */
     public void entrarAlunos(){
         
         FrmAlunos alunos = new FrmAlunos();
@@ -42,6 +55,10 @@ public class MenuPrincipalController {
         
     }
     
+    /**
+     * Método para abrir a janela de funcionários.
+     * 
+     */
     public void EntrarFuncionarios(){
         FuncionariosView funcionarios = new FuncionariosView();
         funcionarios.setVisible(true);
