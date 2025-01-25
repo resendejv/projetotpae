@@ -11,7 +11,7 @@ import view.Login;
 import view.MenuPrincipal;
 
 /**
- * Método que gerencia a janela de Menu.
+ * Classe responsável por gerenciar a janela de Menu.
  * 
  * @author joao victor
  */

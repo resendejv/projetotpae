@@ -11,8 +11,9 @@ import java.sql.SQLException;
  * Interface que instancia um método de listar uma tabela de objetos.
  * 
  * @author joao victor
+ * @param <T> Algum "tipo", a letra T é genérica
  */
-public interface Utilidades3<Object> {
+public interface Utilidades3<T> {
     
     /**
      * Método que lista uma tabela de objetos, que podem ser alunos ou funcionários.
@@ -20,6 +21,6 @@ public interface Utilidades3<Object> {
      * @return ArrayList de objetos a serem listados.
      * @throws SQLException 
      */
-    List<Object> getAll() throws SQLException;
+    List<T> getAll() throws SQLException;
     
 }
